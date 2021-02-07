@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/jquery-3.5.1.js}"></script>
+    <link rel="stylesheet" th:href="@{/bootstrap-ubuntu.css}">
+    <script th:src="@{/bootstrap-ubuntu.bundle.js}"></script>
+</head>
+<body>
+<table class="table table-light">
+    <tr class="thead-dark">
+       <th>Name</th>
+       <th>Description</th>
+    </tr>
+    <tr th:each="game: ${games}">
+        <td th:text="${game.getName()}"></td>
+        <td th:text="${game.getDescription()}"></td><br>
+    </tr>
+</table>
+
+
+    <form th:action="@{/addGame}" th:object="${newGame}" method="post">
+        <p>Title: <input class="form-control" type="text" th:field="*{name}"></p>
+        <p>Description: <input class="form-control" type="text" th:field="*{description}"></p>
+        <p><input type="submit" value="add new game" class="btn btn-primary"></p>
+    </form>
+
+</body>
+</html>
