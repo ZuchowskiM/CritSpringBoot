@@ -1,10 +1,8 @@
 package zuchowskim.crit.crit.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class gameModel {
@@ -15,8 +13,6 @@ public class gameModel {
 
     private String name;
 
-    private int producerID;
-
     private String description;
 
     private Date releaseDate;
@@ -25,18 +21,50 @@ public class gameModel {
 
     private String type;
 
+    private String platfroms;
+
+    @ManyToOne
+    private producerModel producer;
+
+    @OneToMany(mappedBy = "game")
+    private List<reviewModel> reviews;
+
     public gameModel() {
 
     }
 
-    public gameModel(int id, String name, int producerID, String description, Date releaseDate, String picture, String type) {
+    public gameModel(int id, String name, int producerID, String description, Date releaseDate, String picture, String type, String platfroms) {
         this.id = id;
         this.name = name;
-        this.producerID = producerID;
         this.description = description;
         this.releaseDate = releaseDate;
         this.picture = picture;
         this.type = type;
+        this.platfroms = platfroms;
+    }
+
+    public List<reviewModel> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<reviewModel> reviews) {
+        this.reviews = reviews;
+    }
+
+    public producerModel getProducer() {
+        return producer;
+    }
+
+    public void setProducer(producerModel producer) {
+        this.producer = producer;
+    }
+
+    public String getPlatfroms() {
+        return platfroms;
+    }
+
+    public void setPlatfroms(String platfroms) {
+        this.platfroms = platfroms;
     }
 
     public int getId() {
@@ -53,14 +81,6 @@ public class gameModel {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getProducerID() {
-        return producerID;
-    }
-
-    public void setProducerID(int producerID) {
-        this.producerID = producerID;
     }
 
     public String getDescription() {

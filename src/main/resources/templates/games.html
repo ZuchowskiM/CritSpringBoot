@@ -1,30 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script th:src="@{/jquery-3.5.1.js}"></script>
-    <link rel="stylesheet" th:href="@{/bootstrap-ubuntu.css}">
-    <script th:src="@{/bootstrap-ubuntu.bundle.js}"></script>
 </head>
 <body>
-<table class="table table-light">
-    <tr class="thead-dark">
-       <th>Name</th>
-       <th>Description</th>
-    </tr>
-    <tr th:each="game: ${games}">
-        <td th:text="${game.getName()}"></td>
-        <td th:text="${game.getDescription()}"></td><br>
-    </tr>
-</table>
+<div layout:fragment="content">
+    <br>
+    <div class="container">
+        <a th:href="@{/createGame}">
+            <button class="btn btn-info" >Add game</button>
+        </a>
+        <br>
+        <br>
+        <table class="table table-light">
+            <tr class="thead-dark">
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Release Date</th>
+                <th>Producer</th>
+                <th>Type</th>
+                <th>Platfroms</th>
+                <th></th>
+            </tr>
+            <tr th:each="game: ${games}">
+                <td><img class="img " th:src="@{'gameImages/' + ${game.getPicture()}}" th:width="60px" th:height="80px"/></td>
+                <td th:text="${game.getName()}"></td>
+                <td th:text="${game.getDescription()}"></td>
+                <td th:text="${game.getReleaseDate()}"></td>
+                <td th:text="${game.getProducer().getName()}"></td>
+                <td th:text="${game.getType()}"></td>
+                <td th:text="${game.getPlatfroms()}"></td>
+                <td>
+                    <a th:href="@{/detailsGame{id}(id=${#numbers.formatInteger(game.getId(),1)})}">
+                        <button class="btn btn-success">Details</button>
+                    </a>
 
+                    <a th:href="@{/editGame{id}(id=${#numbers.formatInteger(game.getId(),1)})}">
+                        <button class="btn btn-info">Edit</button>
+                    </a>
 
-    <form th:action="@{/addGame}" th:object="${newGame}" method="post">
-        <p>Title: <input class="form-control" type="text" th:field="*{name}"></p>
-        <p>Description: <input class="form-control" type="text" th:field="*{description}"></p>
-        <p><input type="submit" value="add new game" class="btn btn-primary"></p>
-    </form>
-
+                    <a th:href="@{/deleteGame{id}(id=${#numbers.formatInteger(game.getId(),1)})}">
+                        <button class="btn btn-danger">Delete</button>
+                    </a>
+                </td>
+        </table>
+    </div>
+</div>
 </body>
 </html>
