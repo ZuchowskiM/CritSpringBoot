@@ -9,6 +9,7 @@ public class reviewModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Lob
     private String text;
 
     private String title;

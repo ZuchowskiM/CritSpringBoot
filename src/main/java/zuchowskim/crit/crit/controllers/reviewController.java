@@ -103,7 +103,7 @@ public class reviewController {
     public String details(Model model, @PathVariable String id) {
 
         reviewModel review = reviewRepository.findById(Integer.parseInt(id)).get();
-        //System.out.println(review);
+        //System.out.println(review.getText());
 
         model.addAttribute("review", review);
 
