@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img th:src="@{'gameImages/' + ${review.getGame().getPicture()}}" th:width="400px" th:height="500px">
+            </div>
+
+            <div class="col-md-3">
+
+                <dl class="row">
+                    <dd class="col-12">
+                        <h1 th:text="${review.getTitle()}"></h1>
+                    </dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-6">
+                        <p class="font-weight-bold">Game:</p>
+                    </dt>
+                    <dd class="col-6">
+                        <p th:text="${review.getGame().getName()}"></p>
+                    </dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-6">
+                        <p class="font-weight-bold">Producer:</p>
+                    </dt>
+                    <dd class="col-6">
+                        <p th:text="${review.getGame().getProducer().getName()}"></p>
+                    </dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-6">
+                        <p class="font-weight-bold">Critic:</p>
+                    </dt>
+                    <dd class="col-6">
+                        <p th:text="${review.getUser().getName()}"></p>
+                    </dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-6">
+                        <p class="font-weight-bold">Rating:</p>
+                    </dt>
+                    <dd class="col-6">
+                        <p th:text="${review.getRating() + '/10'}"></p>
+                    </dd>
+                </dl>
+
+            </div>
+        </div>
+
+        <br><br>
+        <div class="row text-center">
+            <dt class="col-12">
+                <p class="font-weight-bold">Review:</p>
+            </dt>
+        </div>
+        <br>
+        <div class="row row text-center">
+            <dd class="col-12">
+                <p th:text="${review.getText()}"></p>
+            </dd>
+        </div>
+
+        <br>
+        <a th:href="@{/reviews}">
+            <button class="btn btn-dark">Back to Reviews</button>
+        </a>
+
+
+    </div>
+</div>
+</body>
+</html>
