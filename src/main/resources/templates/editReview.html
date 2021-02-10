@@ -10,7 +10,7 @@
         <form th:action="@{/updateReview}" th:object="${review}" method="post">
             <p>Title: <input class="form-control" type="text" th:field="*{title}"></p>
             <p>Rating: <input class="form-control" type="number" th:field="*{rating}"></p>
-            <p>Text: <textarea class="form-control" type="text" th:field="*{text}"/></p>
+
             <p>Game:
                 <select th:field="*{game}" class="form-control">
                     <option value="">Select Game</option>
@@ -27,6 +27,7 @@
                             th:value="${user.getId()}">
                     </option>
                 </select></p>
+            <p>Text: <textarea class="form-control" type="text" th:field="*{text}" style="height: 300px"/></p>
             <input class="form-control" type="hidden" th:field="*{id}" th:value="${reviewID}">
             <p><input type="submit" value="Save changes" class="btn btn-primary"></p>
         </form>
