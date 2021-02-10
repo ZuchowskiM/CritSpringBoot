@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
 </head>
@@ -7,7 +7,7 @@
 <div layout:fragment="content">
     <br>
     <div class="container">
-        <a th:href="@{/createReview}">
+        <a sec:authorize="hasAuthority('critic')" th:href="@{/createReview}">
             <button class="btn btn-info" >Add Review</button>
         </a>
         <br>
@@ -52,14 +52,14 @@
 
 
                         <a th:href="@{/detailsReview{id}(id=${#numbers.formatInteger(review.getId(),1)})}">
-                            <button class="btn btn-success">Details</button>
+                            <button class="btn btn-success">Show</button>
                         </a>
 
-                        <a th:href="@{/editReview{id}(id=${#numbers.formatInteger(review.getId(),1)})}">
+                        <a th:if="${#authentication.name.equals(review.getUser().getName())}" th:href="@{/editReview{id}(id=${#numbers.formatInteger(review.getId(),1)})}">
                             <button class="btn btn-info">Edit</button>
                         </a>
 
-                        <a th:href="@{/deleteReview{id}(id=${#numbers.formatInteger(review.getId(),1)})}">
+                        <a sec:authorize="hasAuthority('admin')" th:href="@{/deleteReview{id}(id=${#numbers.formatInteger(review.getId(),1)})}">
                             <button class="btn btn-danger">Delete</button>
                         </a>
 

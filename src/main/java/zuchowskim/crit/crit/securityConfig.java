@@ -36,6 +36,10 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/deleteReview*", "/deleteGame*", "/producers", "/editGame*", "/editProducer*", "/deleteProducer*")
+                .hasAuthority("admin")
+                .antMatchers("/createReview")
+                .hasAuthority("critic")
                 .antMatchers("/*").permitAll()
                 .antMatchers(staticResources).permitAll()
                 .anyRequest().authenticated()
@@ -44,7 +48,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
 //                .loginProcessingUrl("/perform_login")
 //                .defaultSuccessUrl("/home", true)
-//                .failureUrl("/login.html?error=true")
+                //.failureUrl("/home")
                 //.failureHandler(authenticationFailureHandler())
                 .and()
                 .logout();
