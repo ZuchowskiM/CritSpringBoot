@@ -8,25 +8,25 @@
     <br>
     <div class="container">
         <form th:action="@{/addReview}" th:object="${newReview}" method="post">
-            <p>Title: <input class="form-control" type="text" th:field="*{title}"></p>
-            <p>Rating: <input class="form-control" type="number" th:field="*{rating}"></p>
+            <p>Title: <input class="form-control" type="text" th:field="*{title}" required></p>
+            <p>Rating: <input class="form-control" type="number" th:field="*{rating}" required></p>
             <p>Game:
-                <select th:field="*{game}" class="form-control">
-                    <option value="">Select Game</option>
+                <select th:field="*{game}" class="form-control" required>
+<!--                    <option value="">Select Game</option>-->
                     <option type="text" th:each="game : ${gamesList}"
                             th:text="${game.getName()}"
                             th:value="${game.getId()}">
                     </option>
                 </select></p>
             <p hidden="">Critic:
-            <select th:field="*{user}" class="form-control" hidden="">
+            <select th:field="*{user}" class="form-control" hidden="" required>
 <!--                <option value="">Select Critic</option>-->
                 <option type="text" th:if="${#authentication.name.equals(user.getName())}" th:each="user : ${usersList}"
                         th:text="${user.getName()}"
                         th:value="${user.getId()}">
                 </option>
             </select></p>
-            <p>Text: <textarea class="form-control" type="text" th:field="*{text}" style="height: 300px"/></p>
+            <p>Text: <textarea class="form-control" type="text" th:field="*{text}" style="height: 300px" required/></p>
             <p><input type="submit" value="Add new review" class="btn btn-primary"></p>
         </form>
         <a th:href="@{/reviews}">

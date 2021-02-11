@@ -10,37 +10,23 @@
         <a sec:authorize="hasAuthority('critic')" th:href="@{/createReview}">
             <button class="btn btn-info" >Add Review</button>
         </a>
+
+        <br><br>
+
+        <form th:action="@{/reviews}" method="get">
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" id="txtSearch" name="keyword" class="form-control col-12">
+                </div>
+
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary">Search game</button>
+                </div>
+            </div>
+        </form>
+
         <br>
         <br>
-<!--        <table class="table table-striped table-light table-hover text-center">-->
-<!--            <tr class="thead-dark">-->
-<!--                <th>Picture</th>-->
-<!--                <th>Title</th>-->
-<!--                <th>Rating</th>-->
-<!--                <th>Critic</th>-->
-<!--                <th></th>-->
-<!--            </tr>-->
-<!--            <tr th:each="review: ${reviews}">-->
-<!--                <td><img class="img " th:src="@{'gameImages/' + ${review.getGame().getPicture()}}" th:width="60px" th:height="80px"/></td>-->
-<!--                <td th:text="${review.getTitle()}"></td>-->
-<!--                <td th:text="${review.getRating()}"></td>-->
-<!--                <td th:text="${review.getUser().getName()}"></td>-->
-<!--                <td>-->
-<!--                    <a th:href="@{/detailsReview{id}(id=${#numbers.formatInteger(review.getId(),1)})}">-->
-<!--                        <button class="btn btn-success">Details</button>-->
-<!--                    </a>-->
-
-<!--                    <a th:href="@{/editReview{id}(id=${#numbers.formatInteger(review.getId(),1)})}">-->
-<!--                        <button class="btn btn-info">Edit</button>-->
-<!--                    </a>-->
-
-<!--                    <a th:href="@{/deleteReview{id}(id=${#numbers.formatInteger(review.getId(),1)})}">-->
-<!--                        <button class="btn btn-danger">Delete</button>-->
-<!--                    </a>-->
-<!--                </td>-->
-<!--        </table>-->
-
-
         <div class="row">
             <div class="col-md-3" th:each="review: ${reviews}" style="padding-bottom: 10px; padding-top: 10px">
                 <div class="card text-center" style="width: 18rem; padding: 5px">

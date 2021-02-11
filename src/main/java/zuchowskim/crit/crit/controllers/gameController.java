@@ -9,7 +9,8 @@ import zuchowskim.crit.crit.models.gameRepository;
 import zuchowskim.crit.crit.models.producerModel;
 import zuchowskim.crit.crit.models.producerRepository;
 import java.util.List;
-
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -22,10 +23,21 @@ public class gameController {
     private producerRepository producerRepository;
 
     @GetMapping("/games")
-    public String get(Model model)
+    public String get(Model model, String keyword)
     {
 
-        model.addAttribute("games", gameRepository.findAll());
+        Predicate<gameModel> byName = game -> game.getName().toLowerCase().contains(keyword.toLowerCase());
+        List<gameModel> games = (List<gameModel>) gameRepository.findAll();
+
+        if (keyword!=null)
+        {
+            games = games.stream().filter(byName).collect(Collectors.toList());
+        }
+
+        model.addAttribute("games", games);
+
+
+
         return "games";
     }
 

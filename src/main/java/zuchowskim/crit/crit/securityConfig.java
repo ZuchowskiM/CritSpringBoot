@@ -32,6 +32,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                 "/gameImages/**",
                 "/logos/**",
                 "/newsImages/*",
+                "/site.css",
         };
 
         http

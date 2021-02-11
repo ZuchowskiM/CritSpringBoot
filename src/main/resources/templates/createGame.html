@@ -8,20 +8,20 @@
     <br>
     <div class="container">
         <form th:action="@{/addGame}" th:object="${newGame}" method="post">
-            <p>Title: <input class="form-control" type="text" th:field="*{name}"></p>
-            <p>Description: <input class="form-control" type="text" th:field="*{description}"></p>
-            <p>Release Date: <input class="form-control" type="date" th:field="*{releaseDate}"></p>
+            <p>Title: <input class="form-control" type="text" th:field="*{name}" required></p>
+            <p>Description: <input class="form-control" type="text" th:field="*{description}" required></p>
+            <p>Release Date: <input class="form-control" type="date" th:field="*{releaseDate}" required></p>
             <p>Producer:
-            <select th:field="*{producer}" class="form-control">
-                <option value="">Select Producer</option>
+            <select th:field="*{producer}" class="form-control" required>
+<!--                <option value="">Select Producer</option>-->
                 <option type="text" th:each="producer : ${producersList}"
                         th:text="${producer.getName()}"
                         th:value="${producer.getId()}">
                 </option>
             </select></p>
-            <p>Type: <input class="form-control" type="text" th:field="*{type}"></p>
-            <p>Picture: <input class="form-control" type="file" th:field="*{picture}"></p>
-            <p>Platforms: <input class="form-control" type="text" th:field="*{platfroms}"></p>
+            <p>Type: <input class="form-control" type="text" th:field="*{type}" required></p>
+            <p>Picture: <input class="form-control" type="file" th:field="*{picture}" required></p>
+            <p>Platforms: <input class="form-control" type="text" th:field="*{platfroms}" required></p>
             <p><input type="submit" value="Add new game" class="btn btn-primary"></p>
         </form>
         <a th:href="@{/games}">

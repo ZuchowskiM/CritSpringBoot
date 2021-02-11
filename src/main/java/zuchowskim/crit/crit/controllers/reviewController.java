@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import zuchowskim.crit.crit.models.*;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Controller
 public class reviewController {
@@ -25,9 +27,17 @@ public class reviewController {
     userRepository userRepository;
 
     @GetMapping("/reviews")
-    public String get(Model model)
+    public String get(Model model, String keyword)
     {
-        model.addAttribute("reviews", reviewRepository.findAll());
+        Predicate<reviewModel> byName = review -> review.getGame().getName().toLowerCase().contains(keyword.toLowerCase());
+        List<reviewModel> reviews = (List<reviewModel>) reviewRepository.findAll();
+
+        if (keyword!=null)
+        {
+            reviews = reviews.stream().filter(byName).collect(Collectors.toList());
+        }
+
+        model.addAttribute("reviews", reviews);
         return "reviews";
     }
 

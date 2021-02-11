@@ -8,10 +8,9 @@
     <br>
     <div class="container">
         <form th:action="@{/addProducer}" th:object="${newProducer}" method="post">
-            <p>Company Name: <input class="form-control" type="text" th:field="*{name}"></p>
-            <p>Market Value: <input class="form-control" type="number" th:field="*{value}"></p>
-            <p>Country: <input class="form-control" type="text" th:field="*{country}"></p>
-            <p>Producer:
+            <p>Company Name: <input class="form-control" type="text" th:field="*{name}" required></p>
+            <p>Market Value: <input class="form-control" type="number" th:field="*{value}" required></p>
+            <p>Country: <input class="form-control" type="text" th:field="*{country}" required></p>
             <p><input type="submit" value="Add new producer" class="btn btn-primary"></p>
         </form>
         <a th:href="@{/producers}">

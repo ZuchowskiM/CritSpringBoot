@@ -11,13 +11,27 @@
         <a sec:authorize="hasAuthority('admin')" th:href="@{/createGame}">
             <button class="btn btn-info" >Add game</button>
         </a>
+        <br><br>
+
+        <form th:action="@{/games}" method="get">
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" id="txtSearch" name="keyword" class="form-control col-12">
+                </div>
+
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary">Search game</button>
+                </div>
+            </div>
+        </form>
+
         <br>
         <br>
         <table class="table table-striped table-light table-hover text-center">
             <tr class="thead-dark">
                 <th>Picture</th>
                 <th>Name</th>
-                <th>Description</th>
+<!--                <th>Description</th>-->
                 <th>Release Date</th>
                 <th>Producer</th>
                 <th>Type</th>
@@ -27,7 +41,7 @@
             <tr th:each="game: ${games}">
                 <td><img class="img " th:src="@{'gameImages/' + ${game.getPicture()}}" th:width="60px" th:height="80px"/></td>
                 <td th:text="${game.getName()}"></td>
-                <td th:text="${game.getDescription()}"></td>
+<!--                <td th:text="${game.getDescription()}"></td>-->
                 <td th:text="${game.getReleaseDate()}"></td>
                 <td th:text="${game.getProducer().getName()}"></td>
                 <td th:text="${game.getType()}"></td>

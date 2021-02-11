@@ -8,9 +8,10 @@
     <title>Crit</title>
     <script th:src="@{jquery-3.5.1.js}"></script>
     <link rel="stylesheet" th:href="@{bootstrap-ubuntu.css}">
+    <link th:href="@{/site.css}" rel="stylesheet" />
     <script th:src="@{bootstrap-ubuntu.bundle.js}"></script>
 </head>
-<body>
+<body class="backgroud-body">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" th:href="@{/home}"><img class="img" th:src="@{/logos/critLogo.png}" th:width="50px" th:height="50px"/></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,11 +69,6 @@
                         <a class="nav-link nav" th:href="@{/login}">Login</a>
                     </li>
                 </div>
-
-
-
-
-
 
 
                 <li sec:authorize="isAnonymous()" class="nav-item">

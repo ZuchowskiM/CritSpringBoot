@@ -8,11 +8,11 @@
     <br>
     <div class="container">
         <form th:action="@{/updateReview}" th:object="${review}" method="post">
-            <p>Title: <input class="form-control" type="text" th:field="*{title}"></p>
-            <p>Rating: <input class="form-control" type="number" th:field="*{rating}"></p>
+            <p>Title: <input class="form-control" type="text" th:field="*{title}" required></p>
+            <p>Rating: <input class="form-control" type="number" th:field="*{rating}" required></p>
 
             <p>Game:
-                <select th:field="*{game}" class="form-control">
+                <select th:field="*{game}" class="form-control" required>
                     <option value="">Select Game</option>
                     <option type="text" th:each="game : ${gamesList}"
                             th:text="${game.getName()}"
@@ -20,15 +20,15 @@
                     </option>
                 </select></p>
 <!--            <p>Critic:-->
-                <select th:field="*{user}" class="form-control" hidden="">
+                <select th:field="*{user}" class="form-control" hidden="" required>
 <!--                    <option value="">Select Critic</option>-->
                     <option type="text" th:if="${#authentication.name.equals(user.getName())}" th:each="user : ${usersList}"
                             th:text="${user.getName()}"
                             th:value="${user.getId()}">
                     </option>
 <!--                </select></p>-->
-            <p>Text: <textarea class="form-control" type="text" th:field="*{text}" style="height: 300px"/></p>
-            <input class="form-control" type="hidden" th:field="*{id}" th:value="${reviewID}">
+            <p>Text: <textarea class="form-control" type="text" th:field="*{text}" style="height: 300px" required/></p>
+            <input class="form-control" type="hidden" th:field="*{id}" th:value="${reviewID}" required>
             <p><input type="submit" value="Save changes" class="btn btn-primary"></p>
         </form>
         <a th:href="@{/reviews}">
