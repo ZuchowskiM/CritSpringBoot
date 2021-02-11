@@ -19,14 +19,14 @@
                             th:value="${game.getId()}">
                     </option>
                 </select></p>
-            <p>Critic:
-                <select th:field="*{user}" class="form-control">
-                    <option value="">Select Critic</option>
-                    <option type="text" th:each="user : ${usersList}"
+<!--            <p>Critic:-->
+                <select th:field="*{user}" class="form-control" hidden="">
+<!--                    <option value="">Select Critic</option>-->
+                    <option type="text" th:if="${#authentication.name.equals(user.getName())}" th:each="user : ${usersList}"
                             th:text="${user.getName()}"
                             th:value="${user.getId()}">
                     </option>
-                </select></p>
+<!--                </select></p>-->
             <p>Text: <textarea class="form-control" type="text" th:field="*{text}" style="height: 300px"/></p>
             <input class="form-control" type="hidden" th:field="*{id}" th:value="${reviewID}">
             <p><input type="submit" value="Save changes" class="btn btn-primary"></p>

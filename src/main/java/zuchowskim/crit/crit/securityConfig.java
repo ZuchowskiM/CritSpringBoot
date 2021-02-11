@@ -31,14 +31,15 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
         String[] staticResources  =  {
                 "/gameImages/**",
                 "/logos/**",
+                "/newsImages/*",
         };
 
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/deleteReview*", "/deleteGame*", "/producers", "/editGame*", "/editProducer*", "/deleteProducer*")
+                .antMatchers("/deleteReview*", "/deleteGame*", "/producers", "/editGame*", "/editProducer*", "/deleteProducer*", "/createGame*", "/createProducer*")
                 .hasAuthority("admin")
-                .antMatchers("/createReview")
+                .antMatchers("/createReview", "/editReview*")
                 .hasAuthority("critic")
                 .antMatchers("/*").permitAll()
                 .antMatchers(staticResources).permitAll()
